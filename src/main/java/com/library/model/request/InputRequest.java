@@ -5,11 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class InputRequest
 {
     private RequestPayload requestPayload;
+
+    public InputRequest() {}
+
+    public InputRequest(RequestPayload requestPayload) {
+        this.requestPayload = requestPayload;
+    }
+
+    public RequestPayload getRequestPayload() {
+        return requestPayload;
+    }
+
+    public void setRequestPayload(RequestPayload requestPayload) {
+        this.requestPayload = requestPayload;
+    }
 }
