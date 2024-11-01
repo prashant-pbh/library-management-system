@@ -20,10 +20,17 @@ public class LibraryController
         return res ? "Book allocated successfully."  : "Book not allocated.";
     }
 
-    @PostMapping("/removeBook/{bookId}/{rollNo}")
-    public void removeBook(@PathVariable("bookId") int bookId, @PathVariable("rollNo") int rollNo)
+    @PostMapping("/submitBook/{orderId}/{rollNo}")
+    public String submitBook(@PathVariable("orderId") int orderId, @PathVariable("rollNo") int rollNo)
     {
-
+        boolean res = libraryService.submitBookData(rollNo, orderId);
+        if(res)
+        {
+            return "Book returned successfully";
+        }
+        else {
+            return "Book not returned successfully";
+        }
     }
 
     @PostMapping("/renewBook/{bookId}/{rollNo}")
@@ -38,5 +45,17 @@ public class LibraryController
         return new Student();
     }
 
+    @GetMapping("/sendReminder")
+    public String sendReminder()
+    {
+        boolean res = libraryService.sendReminder();
+        if(res)
+        {
+            return "Reminder sent";
+        }
+        else {
+            return "Reminder not sent";
+        }
+    }
 
 }

@@ -17,17 +17,9 @@ public class Student
     private String mobileNo;
     private String address;
     private String standard;
+    private String email;
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "rollNo=" + rollNo +
-                ", name='" + name + '\'' +
-                ", mobileNo='" + mobileNo + '\'' +
-                ", address='" + address + '\'' +
-                ", standard='" + standard + '\'' +
-                '}';
-    }
+
 
     public Student()
     {}
@@ -38,6 +30,15 @@ public class Student
         this.mobileNo = mobileNo;
         this.address = address;
         this.standard = standard;
+    }
+
+    public Student(int rollNo, String name, String mobileNo, String address, String standard, String email) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.mobileNo = mobileNo;
+        this.address = address;
+        this.standard = standard;
+        this.email = email;
     }
 
     public int getRollNo() {
@@ -78,5 +79,25 @@ public class Student
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "rollNo=" + rollNo +
+                ", name='" + name + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", address='" + address + '\'' +
+                ", standard='" + standard + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

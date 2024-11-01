@@ -10,17 +10,19 @@ public class OrderDetail
     private int orderId;
     private int bookId;
     private String bookIssueDate;
-    private String bookRenewalDay;
+    private String bookRenewalDate;
     private String bookReturnDueDate;
+    private boolean isBookReturned;
+    private String bookReturnDate;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int orderId, int bookId, String bookIssueDate, String bookRenewalDay, String bookReturnDueDate) {
+    public OrderDetail(int orderId, int bookId, String bookIssueDate, String bookRenewalDate, String bookReturnDueDate) {
         this.orderId = orderId;
         this.bookId = bookId;
         this.bookIssueDate = bookIssueDate;
-        this.bookRenewalDay = bookRenewalDay;
+        this.bookRenewalDate = bookRenewalDate;
         this.bookReturnDueDate = bookReturnDueDate;
     }
 
@@ -48,12 +50,12 @@ public class OrderDetail
         this.bookIssueDate = bookIssueDate;
     }
 
-    public String getBookRenewalDay() {
-        return bookRenewalDay;
+    public String getBookRenewalDate() {
+        return bookRenewalDate;
     }
 
-    public void setBookRenewalDay(String bookRenewalDay) {
-        this.bookRenewalDay = bookRenewalDay;
+    public void setBookRenewalDate(String bookRenewalDate) {
+        this.bookRenewalDate = bookRenewalDate;
     }
 
     public String getBookReturnDueDate() {
@@ -64,14 +66,32 @@ public class OrderDetail
         this.bookReturnDueDate = bookReturnDueDate;
     }
 
+    public boolean isBookReturned() {
+        return isBookReturned;
+    }
+
+    public void setBookReturned(boolean bookReturned) {
+        isBookReturned = bookReturned;
+    }
+
+    public String getBookReturnDate() {
+        return bookReturnDate;
+    }
+
+    public void setBookReturnDate(String bookReturnDate) {
+        this.bookReturnDate = bookReturnDate;
+    }
+
     @Override
     public String toString() {
-        return "Order{" +
+        return "OrderDetail{" +
                 "orderId=" + orderId +
                 ", bookId=" + bookId +
                 ", bookIssueDate='" + bookIssueDate + '\'' +
-                ", bookRenewalDay='" + bookRenewalDay + '\'' +
+                ", bookRenewalDate='" + bookRenewalDate + '\'' +
                 ", bookReturnDueDate='" + bookReturnDueDate + '\'' +
+                ", isBookReturned=" + isBookReturned +
+                ", bookReturnDate='" + bookReturnDate + '\'' +
                 '}';
     }
 }

@@ -9,6 +9,7 @@ public class Transaction
     @Id
     int orderId;
     int studentRollNo;
+    String createdTime;
 
 
     public Transaction() {
@@ -33,6 +34,14 @@ public class Transaction
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public String getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(String createdTime) {
+        this.createdTime = createdTime;
     }
 
     @Override
