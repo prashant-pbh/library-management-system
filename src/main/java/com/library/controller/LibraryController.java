@@ -1,6 +1,8 @@
 package com.library.controller;
 
+import com.library.model.Book;
 import com.library.model.Student;
+import com.library.model.StudentDetailDTO;
 import com.library.model.request.InputRequest;
 import com.library.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class LibraryController
     @PostMapping("/submitBook/{orderId}/{rollNo}")
     public String submitBook(@PathVariable("orderId") int orderId, @PathVariable("rollNo") int rollNo)
     {
+//        logger.info("Request received to submit book with rollNo {} and orderId {}", rollNo,orderId);
         boolean res = libraryService.submitBookData(rollNo, orderId);
         if(res)
         {
@@ -56,6 +59,26 @@ public class LibraryController
         else {
             return "Reminder not sent";
         }
+    }
+
+    @PostMapping("/addStudent")
+    public String addStudent(@RequestBody Student student)
+    {
+        libraryService.addStudent(student);
+        return "Student added successfully";
+    }
+
+    @PostMapping("/addBook")
+    public String addBook(@RequestBody Book book)
+    {
+        libraryService.addBook(book);
+        return "Book added successfully";
+    }
+
+    @PostMapping("/getStudentDetail/{rollNo}")
+    public StudentDetailDTO getStudentDetail(@PathVariable("rollNo") int rollNo)
+    {
+        return libraryService.getStudentDetail(rollNo);
     }
 
 }

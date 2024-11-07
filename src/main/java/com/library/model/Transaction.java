@@ -15,9 +15,10 @@ public class Transaction
     public Transaction() {
     }
 
-    public Transaction(int studentRollNo, int orderId) {
+    public Transaction(int studentRollNo, int orderId,String createdTime) {
         this.studentRollNo = studentRollNo;
         this.orderId = orderId;
+        this.createdTime = createdTime;
     }
 
     public int getStudentRollNo() {
@@ -44,11 +45,13 @@ public class Transaction
         this.createdTime = createdTime;
     }
 
+
     @Override
     public String toString() {
         return "Transaction{" +
-                "studentRollNo=" + studentRollNo +
-                ", orderId=" + orderId +
+                "orderId=" + orderId +
+                ", studentRollNo=" + studentRollNo +
+                ", createdTime='" + createdTime + '\'' +
                 '}';
     }
 }
