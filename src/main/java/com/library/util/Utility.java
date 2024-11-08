@@ -8,6 +8,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import javax.mail.util.ByteArrayDataSource;
 import java.io.ByteArrayOutputStream;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

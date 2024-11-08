@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.util.ByteArrayDataSource;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +65,6 @@ public class LibraryServiceImpl implements LibraryService
                 String email = student.getEmail();
                 sendAllocationBookEmail(student.getName(),email,bookId,bookReturnDueDate,orderDetail.getBookIssueDate());
                 return true;
-//  TODO: as condition is true,then here we will write logic to send conformation-mail to a student regarding there book order.
             } catch (Exception e) {
                 return false;
             }
@@ -136,10 +138,34 @@ public class LibraryServiceImpl implements LibraryService
         return isBookOrdered;
     }
 
+    private boolean isBookIdExist(int orderId)
+    {
+        boolean isBookIdExist = true;
+        Optional<OrderDetail> optionalBook = orderRepository.findById(orderId);
+        if (optionalBook.isEmpty())
+        {
+            return false;
+        }
+        return isBookIdExist;
+    }
+
+
 
     @Override
-    public void renewBookData() {
-
+    public void renewBookData(int orderId, int rollNum)
+    {
+        if(isBookIdExist(orderId) && isStudentExist(rollNum))
+        {
+            Optional<OrderDetail> optionalOrderDetail = orderRepository.findById(orderId);
+            OrderDetail orderDetail = optionalOrderDetail.isEmpty() ? null : optionalOrderDetail.get();
+            int bookId = orderDetail.getBookId();
+            String returnDueDate = orderDetail.getBookReturnDueDate();
+            String bookIssueDate = orderDetail.getBookIssueDate();
+            Instant dueDateInstant = Instant.parse(returnDueDate);
+            String renewDueDate = dueDateInstant.plus(15, ChronoUnit.DAYS).toString();
+            OrderDetail newOrderDetail = new OrderDetail(orderId,bookId,bookIssueDate,null,renewDueDate);
+            orderRepository.save(newOrderDetail);
+        }
     }
 
     @Override

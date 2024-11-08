@@ -10,7 +10,7 @@ public interface LibraryService
 {
     boolean allocateBook(int bookId, int rollNo);
     public boolean submitBookData(int rollNum, int orderId);
-    void renewBookData();
+    void renewBookData(int orderId, int rollNum);
     void getStudentDetailsData();
     boolean sendReminder();
     void addBook(Book books);
